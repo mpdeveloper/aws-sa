@@ -309,51 +309,51 @@ How would you secure data in transit and at rest across all AWS services?
 
 ```mermaid
 graph TB
-    subgraph "Key Management"
-        KMS[AWS KMS<br/>Key Management Service]
-        HSM[CloudHSM<br/>Hardware Security Module]
-        CMEK[Customer Managed<br/>Encryption Keys]
-        ENVELOPE[Envelope Encryption<br/>Data Key Management]
+    subgraph KeyMgmt ["Key Management"]
+        KMS["AWS KMS<br/>Key Management Service"]
+        HSM["CloudHSM<br/>Hardware Security Module"]
+        CMEK["Customer Managed<br/>Encryption Keys"]
+        ENVELOPE["Envelope Encryption<br/>Data Key Management"]
     end
     
-    subgraph "Data at Rest Encryption"
-        subgraph "Storage Services"
-            S3_ENC[S3 Server-Side<br/>Encryption (SSE)]
-            EBS_ENC[EBS Volume<br/>Encryption]
-            EFS_ENC[EFS File System<br/>Encryption]
+    subgraph DataRest ["Data at Rest Encryption"]
+        subgraph Storage ["Storage Services"]
+            S3_ENC["S3 Server-Side<br/>Encryption SSE"]
+            EBS_ENC["EBS Volume<br/>Encryption"]
+            EFS_ENC["EFS File System<br/>Encryption"]
         end
         
-        subgraph "Database Encryption"
-            RDS_TDE[RDS Transparent<br/>Data Encryption]
-            DYNAMO_ENC[DynamoDB<br/>Encryption at Rest]
-            REDSHIFT_ENC[Redshift<br/>Column-Level Encryption]
+        subgraph Database ["Database Encryption"]
+            RDS_TDE["RDS Transparent<br/>Data Encryption"]
+            DYNAMO_ENC["DynamoDB<br/>Encryption at Rest"]
+            REDSHIFT_ENC["Redshift<br/>Column-Level Encryption"]
         end
     end
     
-    subgraph "Data in Transit Encryption"
-        subgraph "Network Layer"
-            TLS[TLS 1.2+<br/>HTTPS/SSL]
-            VPN[VPN Connections<br/>IPSec Tunnels]
-            DIRECTCONNECT[Direct Connect<br/>MACsec Encryption]
+    subgraph DataTransit ["Data in Transit Encryption"]
+        subgraph Network ["Network Layer"]
+            TLS["TLS 1.2+<br/>HTTPS/SSL"]
+            VPN["VPN Connections<br/>IPSec Tunnels"]
+            DIRECTCONNECT["Direct Connect<br/>MACsec Encryption"]
         end
         
-        subgraph "Application Layer"
-            API_TLS[API Gateway<br/>TLS Termination]
-            ALB_TLS[Load Balancer<br/>SSL/TLS Offload]
-            CF_TLS[CloudFront<br/>Edge Encryption]
+        subgraph Application ["Application Layer"]
+            API_TLS["API Gateway<br/>TLS Termination"]
+            ALB_TLS["Load Balancer<br/>SSL/TLS Offload"]
+            CF_TLS["CloudFront<br/>Edge Encryption"]
         end
     end
     
-    subgraph "Application-Level Encryption"
-        CLIENT_SIDE[Client-Side<br/>Encryption]
-        FIELD_LEVEL[Field-Level<br/>Encryption]
-        TOKENIZATION[Data<br/>Tokenization]
+    subgraph AppLevel ["Application-Level Encryption"]
+        CLIENT_SIDE["Client-Side<br/>Encryption"]
+        FIELD_LEVEL["Field-Level<br/>Encryption"]
+        TOKENIZATION["Data<br/>Tokenization"]
     end
     
-    subgraph "Certificate Management"
-        ACM[AWS Certificate<br/>Manager]
-        PRIVATE_CA[AWS Private<br/>Certificate Authority]
-        CERT_ROTATION[Automatic<br/>Certificate Rotation]
+    subgraph CertMgmt ["Certificate Management"]
+        ACM["AWS Certificate<br/>Manager"]
+        PRIVATE_CA["AWS Private<br/>Certificate Authority"]
+        CERT_ROTATION["Automatic<br/>Certificate Rotation"]
     end
     
     KMS --> S3_ENC
